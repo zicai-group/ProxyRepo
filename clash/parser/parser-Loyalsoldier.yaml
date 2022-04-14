@@ -16,6 +16,17 @@ prepend-proxy-groups: # 建立策略组
   # - 🍎 苹果服务
   # - 📲 电报信息
   # - 🐟 漏网之鱼
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🔰 手动选择
+      - 🇭🇰 香港
+      - 🇨🇳 台湾
+      - 🇸🇬 新加坡
+      - 🇺🇲 美国
+      - 🇯🇵 日本
+      - 🌍 备用
   - name: 🔰 手动选择
     type: select
     proxies:
@@ -37,18 +48,26 @@ prepend-proxy-groups: # 建立策略组
       - 🇺🇲 美国
       - 🇯🇵 日本
       - 🌍 备用
-  - name: ADBLOCK
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+      - ♻️ 自动选择
+      - 🔰 手动选择
+  - name: 🛑 全球拦截
     type: select
     proxies:
       - DIRECT
       - REJECT
-      - PROXY
-  - name: PROXY
+      - 🚀 节点选择
+  - name: 🐟 漏网之鱼
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
     proxies:
-      - 🔰 手动选择
+      - 🚀 节点选择
+      - ♻️ 自动选择
 
   - name: 🇭🇰 香港
     type: url-test
@@ -93,24 +112,24 @@ commands:
 
 # 添加规则
 prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不再往下处理
-  - DOMAIN-SUFFIX,jxedt.com,PROXY
-  - RULE-SET,applications,DIRECT
-  - RULE-SET,private,DIRECT
-  - RULE-SET,reject,ADBLOCK
-  - RULE-SET,icloud,DIRECT #
-  - RULE-SET,apple,DIRECT # 这三个为国内可直连地址，如果希望走代理改为PROXY
-  - RULE-SET,google,DIRECT # 
-  - RULE-SET,tld-not-cn,PROXY
-  - RULE-SET,gfw,PROXY
-  - RULE-SET,greatfire,PROXY
-  - RULE-SET,telegramcidr,PROXY
-  - RULE-SET,lancidr,DIRECT
-  - RULE-SET,cncidr,DIRECT
-  - GEOIP,,DIRECT
-  - GEOIP,CN,DIRECT
-  - RULE-SET,direct,DIRECT
-  - RULE-SET,proxy,PROXY
-  - MATCH,PROXY # 规则之外的
+  - DOMAIN-SUFFIX,jxedt.com,🚀 节点选择
+  - RULE-SET,applications,🎯 全球直连
+  - RULE-SET,private,🎯 全球直连
+  - RULE-SET,reject,🛑 全球拦截
+  - RULE-SET,icloud,🎯 全球直连
+  - RULE-SET,apple,🎯 全球直连 # 这三个为国内可直连地址，如果希望走代理改为PROXY
+  - RULE-SET,google,🎯 全球直连
+  - RULE-SET,tld-not-cn,🚀 节点选择
+  - RULE-SET,gfw,🚀 节点选择
+  - RULE-SET,greatfire,🚀 节点选择
+  - RULE-SET,telegramcidr,🚀 节点选择
+  - RULE-SET,lancidr,🎯 全球直连
+  - RULE-SET,cncidr,🎯 全球直连
+  - GEOIP,,🎯 全球直连
+  - GEOIP,CN,🎯 全球直连
+  - RULE-SET,direct,🎯 全球直连
+  - RULE-SET,proxy,🚀 节点选择
+  - MATCH,🐟 漏网之鱼 # 规则之外的
 
 # 添加规则集
 mix-rule-providers: 
