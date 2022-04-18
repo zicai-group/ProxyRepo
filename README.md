@@ -5,8 +5,7 @@
 # convert url
 
 ```
-- https://acl4ssr.netlify.app/
 - https://nexconvert.com/
 ```
 
-> upload config/*.ini file
+> 远程配置 https://raw.githubusercontent.com/zicai-group/ProxyRepo/main/config/ACL4SSR_Online_zicai.ini
