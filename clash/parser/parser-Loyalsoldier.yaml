@@ -13,6 +13,7 @@ prepend-proxy-groups: # 建立策略组
   # - ♻️ 自动选择
   # - 🎯 全球直连
   # - 🛑 全球拦截
+  # - 🍃 应用净化
   # - 🍎 苹果服务
   # - 📲 电报信息
   # - 🐟 漏网之鱼
@@ -20,22 +21,23 @@ prepend-proxy-groups: # 建立策略组
     type: select
     proxies:
       - ♻️ 自动选择
-      - 🔰 手动选择
+      - 🔰 手动切换
       - 🇭🇰 香港
       - 🇨🇳 台湾
       - 🇸🇬 新加坡
-      - 🇺🇲 美国
       - 🇯🇵 日本
+      - 🇺🇲 美国
       - 🌍 备用
-  - name: 🔰 手动选择
+      - 🎯 全球直连
+  - name: 🔰 手动切换
     type: select
     proxies:
       - ♻️ 自动选择
       - 🇭🇰 香港
       - 🇨🇳 台湾
       - 🇸🇬 新加坡
-      - 🇺🇲 美国
       - 🇯🇵 日本
+      - 🇺🇲 美国
       - 🌍 备用
   - name: ♻️ 自动选择
     type: url-test
@@ -45,29 +47,25 @@ prepend-proxy-groups: # 建立策略组
       - 🇭🇰 香港
       - 🇨🇳 台湾
       - 🇸🇬 新加坡
-      - 🇺🇲 美国
       - 🇯🇵 日本
+      - 🇺🇲 美国
       - 🌍 备用
   - name: 🎯 全球直连
     type: select
     proxies:
       - DIRECT
-      - 🚀 节点选择
-      - ♻️ 自动选择
-      - 🔰 手动选择
   - name: 🛑 全球拦截
     type: select
     proxies:
       - DIRECT
       - REJECT
-      - 🚀 节点选择
   - name: 🐟 漏网之鱼
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
     proxies:
-      - 🚀 节点选择
       - ♻️ 自动选择
+      - 🚀 节点选择
 
   - name: 🇭🇰 香港
     type: url-test
