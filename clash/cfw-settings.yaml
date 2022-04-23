@@ -1,7 +1,7 @@
 profileParsersText: >-
   parsers: # array
     # - reg: ^.*$ 匹配所有订阅，或  - url: https://example.com/profile.yaml 指定订阅
-    - url: https://sub.websubscribe.net/api/v1/client/subscribe?token=KGzX64A5qOgIqyJk
+    - url: https://sub.websubscribe.net/api/v1/client/subscribe
     # 删除服务商提供的策略组和规则
       code: |
         module.exports.parse = (raw, { yaml }) => {

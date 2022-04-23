@@ -110,7 +110,6 @@ commands:
 
 # 添加规则
 prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不再往下处理
-  - DOMAIN-SUFFIX,jxedt.com,🚀 节点选择
   - RULE-SET,applications,🎯 全球直连
   - RULE-SET,private,🎯 全球直连
   - RULE-SET,reject,🛑 全球拦截
@@ -135,7 +134,6 @@ mix-rule-providers:
     type: http
     behavior: domain
     url: "https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt"
-    # url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
     path: ./ruleset/Loyalsoldier/reject.yaml
     interval: 86400
 
