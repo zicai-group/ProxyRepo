@@ -42,7 +42,8 @@ prepend-proxy-groups: # 建立策略组
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
-    interval: 600
+    interval: 300
+    tolerance: 50
     proxies:
       - 🇭🇰 香港
       - 🇨🇳 台湾
@@ -60,37 +61,40 @@ prepend-proxy-groups: # 建立策略组
       - DIRECT
       - REJECT
   - name: 🐟 漏网之鱼
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 600
+    type: select
     proxies:
       - ♻️ 自动选择
       - 🚀 节点选择
-
   - name: 🇭🇰 香港
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
+    tolerance: 150
   - name: 🇨🇳 台湾
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
+    tolerance: 150
   - name: 🇸🇬 新加坡
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
+    tolerance: 150
   - name: 🇺🇲 美国
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
+    tolerance: 150
   - name: 🇯🇵 日本
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
+    tolerance: 150
   - name: 🌍 备用
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 600
+    tolerance: 150
 
 commands:
   #- proxy-groups.🔯 选择节点.proxies=[]proxyNames # 向指定策略组添加订阅中的节点名，可使用正则过滤
