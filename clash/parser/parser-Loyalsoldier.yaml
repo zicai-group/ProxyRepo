@@ -114,6 +114,7 @@ commands:
 
 # 添加规则
 prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不再往下处理
+  - DOMAIN-SUFFIX,cccat.io,🔰 手动切换
   - RULE-SET,applications,🎯 全球直连
   - RULE-SET,private,🎯 全球直连
   - RULE-SET,reject,🛑 全球拦截
@@ -126,7 +127,6 @@ prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不
   - RULE-SET,telegramcidr,🚀 节点选择
   - RULE-SET,lancidr,🎯 全球直连
   - RULE-SET,cncidr,🎯 全球直连
-  - GEOIP,,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
   - RULE-SET,direct,🎯 全球直连
   - RULE-SET,proxy,🚀 节点选择
