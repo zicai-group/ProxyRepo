@@ -27,8 +27,18 @@ dns:
       - 0.0.0.0/32
 
 proxies:
+  - DIRECT
 
 proxy-groups:
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
 
 rules:
   - DOMAIN-SUFFIX,jxedt.com,🔰 手动切换
@@ -45,7 +55,6 @@ rules:
   - RULE-SET,telegramcidr,🚀 节点选择
   - RULE-SET,lancidr,🎯 全球直连
   - RULE-SET,cncidr,🎯 全球直连
-  - GEOIP,,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
   - RULE-SET,direct,🎯 全球直连
   - RULE-SET,proxy,🚀 节点选择
