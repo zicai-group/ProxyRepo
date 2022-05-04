@@ -26,11 +26,9 @@ dns:
       - 240.0.0.0/4
       - 0.0.0.0/32
 
-proxies:
-  - DIRECT
+proxies: ~
 
-proxy-groups:
-  - name: DIRECT
+proxy-groups: ~
 
 rules:
   - DOMAIN-SUFFIX,jxedt.com,🔰 手动切换
