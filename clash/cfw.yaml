@@ -30,15 +30,7 @@ proxies:
   - DIRECT
 
 proxy-groups:
-  - name: 🎯 全球直连
-    type: select
-    proxies:
-      - DIRECT
-  - name: 🛑 全球拦截
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
+  - name: DIRECT
 
 rules:
   - DOMAIN-SUFFIX,jxedt.com,🔰 手动切换
