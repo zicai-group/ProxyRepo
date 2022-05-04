@@ -1,0 +1,134 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: :9090
+external-ui: /ui
+dns:
+  enable: true
+  ipv6: false
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  enhanced-mode: redir-host
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - tls://1.0.0.1:853
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  fallback-filter:
+    geoip: true
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+
+rules:
+  - DOMAIN-SUFFIX,jxedt.com,🔰 手动切换
+  - DOMAIN-SUFFIX,cccat.io,🔰 手动切换
+  - RULE-SET,applications,🎯 全球直连
+  - RULE-SET,private,🎯 全球直连
+  - RULE-SET,reject,🛑 全球拦截
+  - RULE-SET,icloud,🎯 全球直连
+  - RULE-SET,apple,🎯 全球直连
+  - RULE-SET,google,🎯 全球直连
+  - RULE-SET,tld-not-cn,🚀 节点选择
+  - RULE-SET,gfw,🚀 节点选择
+  - RULE-SET,greatfire,🚀 节点选择
+  - RULE-SET,telegramcidr,🚀 节点选择
+  - RULE-SET,lancidr,🎯 全球直连
+  - RULE-SET,cncidr,🎯 全球直连
+  - GEOIP,,🎯 全球直连
+  - GEOIP,CN,🎯 全球直连
+  - RULE-SET,direct,🎯 全球直连
+  - RULE-SET,proxy,🚀 节点选择
+  - MATCH,🐟 漏网之鱼
+
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt
+    path: ./ruleset/Loyalsoldier/reject.yaml
+    interval: 86400
+  icloud:
+    type: http
+    behavior: domain
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/icloud.txt
+    path: ./ruleset/Loyalsoldier/icloud.yaml
+    interval: 86400
+  apple:
+    type: http
+    behavior: domain
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt
+    path: ./ruleset/Loyalsoldier/apple.yaml
+    interval: 86400
+  google:
+    type: http
+    behavior: domain
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/google.txt
+    path: ./ruleset/Loyalsoldier/google.yaml
+    interval: 86400
+  proxy:
+    type: http
+    behavior: domain
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt
+    path: ./ruleset/Loyalsoldier/proxy.yaml
+    interval: 86400
+  direct:
+    type: http
+    behavior: domain
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt
+    path: ./ruleset/Loyalsoldier/direct.yaml
+    interval: 86400
+  private:
+    type: http
+    behavior: domain
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt
+    path: ./ruleset/Loyalsoldier/private.yaml
+    interval: 86400
+  gfw:
+    type: http
+    behavior: domain
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
+    path: ./ruleset/Loyalsoldier/gfw.yaml
+    interval: 86400
+  greatfire:
+    type: http
+    behavior: domain
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/greatfire.txt
+    path: ./ruleset/Loyalsoldier/greatfire.yaml
+    interval: 86400
+  tld-not-cn:
+    type: http
+    behavior: domain
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt
+    path: ./ruleset/Loyalsoldier/tld-not-cn.yaml
+    interval: 86400
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt
+    path: ./ruleset/Loyalsoldier/telegramcidr.yaml
+    interval: 86400
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
+    path: ./ruleset/Loyalsoldier/cncidr.yaml
+    interval: 86400
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt
+    path: ./ruleset/Loyalsoldier/lancidr.yaml
+    interval: 86400
+  applications:
+    type: http
+    behavior: classical
+    url: https://github-do.panbaidu.cn//https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt
+    path: ./ruleset/Loyalsoldier/applications.yaml
+    interval: 86400
