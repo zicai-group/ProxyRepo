@@ -1,32 +1,263 @@
-profileParsersText: >-
-  parsers: # array
-    # - reg: ^.*$ 匹配所有订阅，或  - url: https://example.com/profile.yaml 指定订阅
-    - reg: ^.*$
-    # 删除服务商提供的策略组和规则
-      code: |
-        module.exports.parse = (raw, { yaml }) => {
+parsers: # array
+  # - reg: ^.*$ 匹配所有订阅，或  - url: https://example.com/profile.yaml 指定订阅
+  - reg: ^.*$
+  # 删除服务商提供的策略组和规则
+    code: |
+      module.exports.parse = (raw, { yaml }) => {
           let rawObj = yaml.parse(raw)
           rawObj['proxy-groups'] = []
           rawObj['rules'] = []
           return yaml.stringify(rawObj)
-        }
-    # 建立自己的配置
-      file: "D:/Tools/Freedom/Clash/data/parsers/parser-Loyalsoldier.yaml"
-    - reg: /*meimei1314\.xyz*/
-      code: |
-        module.exports.parse = (raw, { yaml,console }) => {
+      }
+  # 建立自己的配置
+  # file: "D:/Clash/data/parsers/parser-Loyalsoldier.yaml"
+    yaml:
+      prepend-proxy-groups: # 建立策略组
+      # 策略组示例
+      # - name: 分组名
+        # type: select       # 手动选点   
+              # url-test     # 自动选择延迟最低的节点
+              # fallback     # 节点故障时自动切换下一个
+              # laod-balance # 均衡使用分组内的节点
+        # url: http://www.gstatic.com/generate_204 # 测试地址 非select类型分组必要
+        # interval: 300 # 自动测试间隔时间，单位秒 非select类型分组必要
+        # tolerance: 50 # 允许的偏差，节点之间延迟差小于该值不切换 非必要
+        # proxies:  
+          # - 节点名称或其他分组套娃
+        # - ♻️ 自动选择
+        # - 🎯 全球直连
+        # - 🛑 全球拦截
+        # - 🍃 应用净化
+        # - 🍎 苹果服务
+        # - 📲 电报信息
+        # - 🐟 漏网之鱼
+        - name: 🚀 节点选择
+          type: select
+          proxies:
+            - ♻️ 自动选择
+            - 🔰 手动切换
+            - 🇭🇰 香港
+            - 🇨🇳 台湾
+            - 🇸🇬 新加坡
+            - 🇯🇵 日本
+            - 🇺🇲 美国
+            - 🌍 备用
+            - 🎯 全球直连
+        - name: 🔰 手动切换
+          type: select
+          proxies:
+            - ♻️ 自动选择
+            - 🇭🇰 香港
+            - 🇨🇳 台湾
+            - 🇸🇬 新加坡
+            - 🇯🇵 日本
+            - 🇺🇲 美国
+            - 🌍 备用
+        - name: ♻️ 自动选择
+          type: url-test
+          url: http://www.gstatic.com/generate_204
+          interval: 300
+          tolerance: 50
+          proxies:
+            - 🇭🇰 香港
+            - 🇨🇳 台湾
+            - 🇸🇬 新加坡
+            - 🇯🇵 日本
+            - 🇺🇲 美国
+            - 🌍 备用
+        - name: 🎯 全球直连
+          type: select
+          proxies:
+            - DIRECT
+        - name: 🛑 全球拦截
+          type: select
+          proxies:
+            - DIRECT
+            - REJECT
+        - name: 🐟 漏网之鱼
+          type: select
+          proxies:
+            - ♻️ 自动选择
+            - 🚀 节点选择
+        - name: 🇭🇰 香港
+          type: url-test
+          url: http://www.gstatic.com/generate_204
+          interval: 600
+          tolerance: 150
+        - name: 🇨🇳 台湾
+          type: url-test
+          url: http://www.gstatic.com/generate_204
+          interval: 600
+          tolerance: 150
+        - name: 🇸🇬 新加坡
+          type: url-test
+          url: http://www.gstatic.com/generate_204
+          interval: 600
+          tolerance: 150
+        - name: 🇺🇲 美国
+          type: url-test
+          url: http://www.gstatic.com/generate_204
+          interval: 600
+          tolerance: 150
+        - name: 🇯🇵 日本
+          type: url-test
+          url: http://www.gstatic.com/generate_204
+          interval: 600
+          tolerance: 150
+        - name: 🌍 备用
+          type: url-test
+          url: http://www.gstatic.com/generate_204
+          interval: 600
+          tolerance: 150
+
+      commands:
+        #- proxy-groups.🔯 选择节点.proxies=[]proxyNames # 向指定策略组添加订阅中的节点名，可使用正则过滤
+        #- proxy-groups.🔰 选择节点.proxies.0+DIRECT # 向指定分组第一个位置添加一个 DIRECT 节点名
+        # 一些可能用到的正则过滤节点示例，使分组更细致
+        # []proxyNames|a                         # 包含a
+        # []proxyNames|^(.*)(a|b)+(.*)$          # 包含a或b
+        # []proxyNames|^(?=.*a)(?=.*b).*$        # 包含a和b
+        # []proxyNames|^((?!b).)*a((?!b).)*$     # 包含a且不包含b
+        # []proxyNames|^((?!b|c).)*a((?!b|c).)*$ # 包含a且不包含b或c
+        - proxy-groups.🇭🇰 香港.proxies=[]proxyNames|香港
+        - proxy-groups.🇨🇳 台湾.proxies=[]proxyNames|台湾
+        - proxy-groups.🇸🇬 新加坡.proxies=[]proxyNames|新加坡
+        - proxy-groups.🇺🇲 美国.proxies=[]proxyNames|美国
+        - proxy-groups.🇯🇵 日本.proxies=[]proxyNames|日本
+        - proxy-groups.🌍 备用.proxies=[]proxyNames|^((?!香港|台湾|新加坡|日本).)*$
+
+      # 添加规则
+      prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不再往下处理
+        - RULE-SET,applications,🎯 全球直连
+        - RULE-SET,private,🎯 全球直连
+        - RULE-SET,reject,🛑 全球拦截
+        - RULE-SET,icloud,🎯 全球直连
+        - RULE-SET,apple,🎯 全球直连 # 这三个为国内可直连地址，如果希望走代理改为PROXY
+        - RULE-SET,google,🎯 全球直连
+        - RULE-SET,tld-not-cn,🚀 节点选择
+        - RULE-SET,gfw,🚀 节点选择
+        - RULE-SET,greatfire,🚀 节点选择
+        - RULE-SET,telegramcidr,🚀 节点选择
+        - RULE-SET,lancidr,🎯 全球直连
+        - RULE-SET,cncidr,🎯 全球直连
+        - GEOIP,CN,🎯 全球直连
+        - RULE-SET,direct,🎯 全球直连
+        - RULE-SET,proxy,🚀 节点选择
+        - MATCH,🐟 漏网之鱼 # 规则之外的
+
+      # 添加规则集
+      mix-rule-providers: 
+        reject: # 广告域名列表
+          type: http
+          behavior: domain
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+          path: ./ruleset/Loyalsoldier/reject.yaml
+          interval: 86400
+
+        icloud: # iCloud 域名列表
+          type: http
+          behavior: domain
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+          path: ./ruleset/Loyalsoldier/icloud.yaml
+          interval: 86400
+
+        apple: # Apple 在中国大陆可直连的域名列表
+          type: http
+          behavior: domain
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+          path: ./ruleset/Loyalsoldier/apple.yaml
+          interval: 86400
+
+        google: # Google 在中国大陆可直连的域名列表
+          type: http
+          behavior: domain
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+          path: ./ruleset/Loyalsoldier/google.yaml
+          interval: 86400
+
+        proxy: # 代理域名列表
+          type: http
+          behavior: domain
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+          path: ./ruleset/Loyalsoldier/proxy.yaml
+          interval: 86400
+
+        direct: # 直连域名列表
+          type: http
+          behavior: domain
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+          path: ./ruleset/Loyalsoldier/direct.yaml
+          interval: 86400
+
+        private: # 私有网络专用域名列表
+          type: http
+          behavior: domain
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+          path: ./ruleset/Loyalsoldier/private.yaml
+          interval: 86400
+
+        gfw: # GFWList 域名列表
+          type: http
+          behavior: domain
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+          path: ./ruleset/Loyalsoldier/gfw.yaml
+          interval: 86400
+
+        greatfire: # GreatFire 域名列表
+          type: http
+          behavior: domain
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt"
+          path: ./ruleset/Loyalsoldier/greatfire.yaml
+          interval: 86400
+
+        tld-not-cn: # 非中国大陆使用的顶级域名列表
+          type: http
+          behavior: domain
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
+          path: ./ruleset/Loyalsoldier/tld-not-cn.yaml
+          interval: 86400
+
+        telegramcidr: # Telegram 使用的 IP 地址列表
+          type: http
+          behavior: ipcidr
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+          path: ./ruleset/Loyalsoldier/telegramcidr.yaml
+          interval: 86400
+
+        cncidr: # 中国大陆 IP 地址列表
+          type: http
+          behavior: ipcidr
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+          path: ./ruleset/Loyalsoldier/cncidr.yaml
+          interval: 86400
+
+        lancidr: # 局域网 IP 及保留 IP 地址列表
+          type: http
+          behavior: ipcidr
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+          path: ./ruleset/Loyalsoldier/lancidr.yaml
+          interval: 86400
+
+        applications: # 需要直连的常见软件列表
+          type: http
+          behavior: classical
+          url: "https://gcore.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+          path: ./ruleset/Loyalsoldier/applications.yaml
+          interval: 86400
+  - reg: /*meimei1314\.xyz*/
+    code: |
+      module.exports.parse = (raw, { yaml,console }) => {
           let rawObj = yaml.parse(raw)
           rawObj['proxies'].forEach(proxy => {
-            if (proxy['network'] === 'ws') {
+          if (proxy['network'] === 'ws') {
               proxy['skip-cert-verify'] = true
               proxy['ws-opts'] = {
-                'path': proxy['ws-path'],
-                'headers': { ...proxy['ws-headers'] }
+              'path': proxy['ws-path'],
+              'headers': { ...proxy['ws-headers'] }
               }
               delete proxy['ws-path']
               delete proxy['ws-headers']
-            }
+          }
           })
           return yaml.stringify(rawObj)
-        }
-
+      }
