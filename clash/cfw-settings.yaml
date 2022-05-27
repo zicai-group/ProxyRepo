@@ -6,9 +6,9 @@ profileParsersText: >-
       code: |
         module.exports.parse = (raw, { yaml }) => {
           let rawObj = yaml.parse(raw)
-          let groups = []
-          let rules = []
-          return yaml.stringify({ ...rawObj, 'proxy-groups': groups, rules })
+          rawObj['proxy-groups'] = []
+          rawObj['rules'] = []
+          return yaml.stringify(rawObj)
         }
     # 建立自己的配置
       file: "D:/Tools/Freedom/Clash/data/parsers/parser-Loyalsoldier.yaml"
@@ -16,12 +16,12 @@ profileParsersText: >-
       code: |
         module.exports.parse = (raw, { yaml,console }) => {
           let rawObj = yaml.parse(raw)
-          rawObj.proxies.forEach(proxy => {
+          rawObj['proxies'].forEach(proxy => {
             if (proxy['network'] === 'ws') {
               proxy['skip-cert-verify'] = true
               proxy['ws-opts'] = {
                 'path': proxy['ws-path'],
-                'headers': { 'Host': proxy['ws-headers']['Host']}
+                'headers': { ...proxy['ws-headers'] }
               }
               delete proxy['ws-path']
               delete proxy['ws-headers']
