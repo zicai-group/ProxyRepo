@@ -15,14 +15,14 @@ parsers: # array
       prepend-proxy-groups: # 建立策略组
       # 策略组示例
       # - name: 分组名
-        # type: select       # 手动选点   
+        # type: select       # 手动选点
               # url-test     # 自动选择延迟最低的节点
               # fallback     # 节点故障时自动切换下一个
               # laod-balance # 均衡使用分组内的节点
         # url: http://www.gstatic.com/generate_204 # 测试地址 非select类型分组必要
         # interval: 300 # 自动测试间隔时间，单位秒 非select类型分组必要
         # tolerance: 50 # 允许的偏差，节点之间延迟差小于该值不切换 非必要
-        # proxies:  
+        # proxies:
           # - 节点名称或其他分组套娃
         # - ♻️ 自动选择
         # - 🎯 全球直连
@@ -128,6 +128,8 @@ parsers: # array
 
       # 添加规则
       prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不再往下处理
+        - DOMAIN-SUFFIX,translate.google.com,🚀 节点选择
+        - DOMAIN-SUFFIX,translate.googleapi.com,🚀 节点选择
         - RULE-SET,applications,🎯 全球直连
         - RULE-SET,private,🎯 全球直连
         - RULE-SET,reject,🛑 全球拦截
@@ -146,7 +148,7 @@ parsers: # array
         - MATCH,🐟 漏网之鱼 # 规则之外的
 
       # 添加规则集
-      mix-rule-providers: 
+      mix-rule-providers:
         reject: # 广告域名列表
           type: http
           behavior: domain

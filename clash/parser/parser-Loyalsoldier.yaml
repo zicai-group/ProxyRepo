@@ -115,6 +115,8 @@ commands:
 # 添加规则
 prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不再往下处理
   - DOMAIN-SUFFIX,cccat.io,🔰 手动切换
+  - DOMAIN-SUFFIX,translate.google.com,🚀 节点选择
+  - DOMAIN-SUFFIX,translate.googleapi.com,🚀 节点选择
   - RULE-SET,applications,🎯 全球直连
   - RULE-SET,private,🎯 全球直连
   - RULE-SET,reject,🛑 全球拦截
