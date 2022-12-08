@@ -1,0 +1,8 @@
+parsers:
+  # ====== 本地配置 ======
+  # 删除服务商提供的策略组和规则
+  - reg: ^.*$
+    file: "D:/Clash/Data/parser/clear.js"
+  # 建立自己的配置
+  - reg: ^.*$
+    file: "D:/Clash/Data/parser/parser-Loyalsoldier.yaml"
