@@ -10,7 +10,6 @@ parsers: # array
           return yaml.stringify(rawObj)
       }
   # 建立自己的配置
-  # file: "D:/Clash/data/parsers/parser-Loyalsoldier.yaml"
     yaml:
       prepend-proxy-groups: # 建立策略组
       # 策略组示例
