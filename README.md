@@ -23,11 +23,13 @@ parsers:
 
 # convert url
 
+* 订阅转换地址    [https://sub.xeton.dev](https://sub.xeton.dev)
 * 订阅转换地址    [https://nexconvert.com](https://nexconvert.com)
+* 订阅转换地址    [https://acl4ssr.netlify.app](https://acl4ssr.netlify.app)
 * 远程配置(手机)
 
 ```
-https://raw.githubusercontent.com/zicai-group/ProxyRepo/main/config/convert-phone.ini
+https://raw.githubusercontent.com/zicai-group/ProxyRepo/main/config/convert-cfa.ini
 ```
 
 * 远程配置(桌面-本地规则)
