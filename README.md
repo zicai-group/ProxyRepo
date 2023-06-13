@@ -29,7 +29,7 @@ parsers:
 * 远程配置(安卓-在线规则)
 
 ```
-https://raw.githubusercontent.com/zicai-group/ProxyRepo/main/config/convert-cfa.ini
+https://raw.githubusercontent.com/zicai-group/ProxyRepo/main/config/convert-phone.ini
 ```
 
 * 远程配置(桌面-在线规则)
@@ -41,6 +41,6 @@ https://raw.githubusercontent.com/zicai-group/ProxyRepo/main/config/convert-cfw-
 * 远程配置(桌面-本地规则)
 
 ```
-https://raw.githubusercontent.com/zicai-group/ProxyRepo/main/config/convert-cfw.ini
+https://raw.githubusercontent.com/zicai-group/ProxyRepo/main/config/convert-cfw-ruleset.ini
 ```
 
