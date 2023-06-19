@@ -105,12 +105,12 @@ commands:
   # []proxyNames|^(?=.*a)(?=.*b).*$        # 包含a和b
   # []proxyNames|^((?!b).)*a((?!b).)*$     # 包含a且不包含b
   # []proxyNames|^((?!b|c).)*a((?!b|c).)*$ # 包含a且不包含b或c
-  - proxy-groups.🇭🇰 香港.proxies=[]proxyNames|香港
-  - proxy-groups.🇨🇳 台湾.proxies=[]proxyNames|台湾
-  - proxy-groups.🇸🇬 新加坡.proxies=[]proxyNames|^(.*)(新加坡|狮城)+(.*)$
-  - proxy-groups.🇺🇲 美国.proxies=[]proxyNames|美国
-  - proxy-groups.🇯🇵 日本.proxies=[]proxyNames|日本
-  - proxy-groups.🌍 备用.proxies=[]proxyNames|^((?!香港|台湾|新加坡|狮城|日本).)*$
+  - proxy-groups.🇭🇰 香港.proxies=[]proxyNames|^(.*)(港|HK|Hong Kong)+(.*)$
+  - proxy-groups.🇨🇳 台湾.proxies=[]proxyNames|^(.*)(台|TW|Taiwan)+(.*)$
+  - proxy-groups.🇸🇬 新加坡.proxies=[]proxyNames|^(.*)(新加坡|狮|SG|Singapore)+(.*)$
+  - proxy-groups.🇯🇵 日本.proxies=[]proxyNames|^(.*)(日本|JP|Japan)+(.*)$
+  - proxy-groups.🇺🇲 美国.proxies=[]proxyNames|^(.*)(美|US|United States)+(.*)$
+  - proxy-groups.🌍 备用.proxies=[]proxyNames|^(?!.*(港|HK|Hong Kong|台|TW|Taiwan|新加坡|狮|SG|Singapore|日本|JP|Japan|美|US|United States)).*
 
 # 添加规则
 prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不再往下处理
