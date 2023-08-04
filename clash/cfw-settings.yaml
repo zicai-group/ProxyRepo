@@ -121,9 +121,9 @@ parsers: # array
         - proxy-groups.🇭🇰 香港.proxies=[]proxyNames|^(.*)(港|HK|Hong Kong)+(.*)$
         - proxy-groups.🇨🇳 台湾.proxies=[]proxyNames|^(.*)(台|TW|Taiwan)+(.*)$
         - proxy-groups.🇸🇬 新加坡.proxies=[]proxyNames|^(.*)(新加坡|狮|SG|Singapore)+(.*)$
-        - proxy-groups.🇯🇵 日本.proxies=[]proxyNames|^(.*)(日本|JP|Japan)+(.*)$
+        - proxy-groups.🇯🇵 日本.proxies=[]proxyNames|^(.*)(日本|东京|JP|Japan)+(.*)$
         - proxy-groups.🇺🇲 美国.proxies=[]proxyNames|^(.*)(美|US|United States)+(.*)$
-        - proxy-groups.🌍 备用.proxies=[]proxyNames|^(?!.*(港|HK|Hong Kong|台|TW|Taiwan|新加坡|狮|SG|Singapore|日本|JP|Japan|美|US|United States)).*
+        - proxy-groups.🌍 备用.proxies=[]proxyNames|^(?!.*(港|HK|Hong Kong|台|TW|Taiwan|新加坡|狮|SG|Singapore|日本|东京|JP|Japan|美|US|United States)).*
 
       # 添加规则
       prepend-rules: # 规则由上往下遍历，如上面规则已经命中，则不再往下处理
